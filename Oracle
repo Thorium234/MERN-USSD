@@ -1,0 +1,137 @@
+resource location: https://www.oracle.com/ua/database/mern-stack/
+
+What Is the MERN Stack? Guide & Examples
+
+Jeffrey Erickson | Content Strategist | January 30, 2024
+
+In This Article
+
+    What Is the MERN Stack?
+    MERN Stack vs. MEAN Stack
+    MERN Stack Explained
+    How Does the MERN Stack Work?
+    MERN Stack Components
+    Benefits of MERN Stack
+    Challenges of the MERN Stack
+    What Does a MERN Stack Developer Do?
+    MERN Stack Use Cases
+    Choosing the Right Stack in 2024
+    Get Started with Oracle Database for Developers
+    MERN Stack FAQs
+
+Modern applications are built using a variety of programming languages. Some of the most popular are Java, JavaScript, and Python, but many others are gaining traction. In general, a front-end application is written in JavaScript and a back-end application in Java. However, full-stack applications are now being written in JavaScript using comprehensive stacks of cloud native technologies that handle database storage, retrieval, application servers, the web user experience, and more. A prime example of this type of development platform is the MERN stack.
+What Is the MERN Stack?
+
+The MERN stack is a collection of technologies that help developers build robust and scalable web applications using JavaScript. The acronym “MERN” stands for MongoDB, Express, React, and Node.js, with each component playing a role in the development process. MongoDB serves as a document-oriented database that can efficiently store data in JSON format. Express is a web application framework that provides a set of features to streamline the assembly of web applications. React is a front-end JavaScript library that offers a large toolkit for crafting user interfaces. Node.js is the runtime environment for execution of JavaScript code on the server side, coordinating communication between front-end and back-end components.
+
+As a group, these components make the MERN stack a preferred choice for developers seeking an efficient, full-stack development framework.
+MERN Stack vs. MEAN Stack
+
+The MERN stack and the MEAN stack are both collections of popular JavaScript-based technologies used for web development. MEAN is an equivalent set of tools to MERN, simply replacing the React library and framework with another popular framework called Angular, also known as Angular.js. Both Angular and React are front-end technologies; the rest of the components stay the same.
+
+Both stacks have strengths and weaknesses. The best choice for your application will depend on your specific needs and preferences.
+
+Key Takeaways
+
+    The MERN stack is an open source–centric collection of technologies that uses JavaScript for both the browser and server sides of a web application.
+    MERN is an acronym for the four technologies that form the stack: MongoDB, Express, React, and Node.js.
+    Developers recognize the MERN stack as a simplified development platform for building highly scalable and interactive web applications.
+
+MERN Stack Explained
+
+The MERN stack is a popular framework that integrates JavaScript technologies to facilitate the creation of full-stack web applications. MERN is an acronym for the set of technologies that make up the stack: MongoDB, Express, React, and Node.js. Web developers have found that its JavaScript-centric approach offers a cohesive development environment for building dynamic web applications, reducing the need for context switching between different programming languages.
+
+The MERN stack has earned a reputation as a reliable and efficient choice for developing web applications. And, the open source nature of the MERN stack components ensures wide community support, continuous updates, and access to an array of resources.
+How Does the MERN Stack Work?
+
+The MERN stack is ideal for developers who want to use a single language, JavaScript, for both the front end and back end of their applications. The MERN stack uses a collection of popular open source, cloud native technologies to support all steps in the web application’s functionality.
+MERN Stack Components
+
+The MERN stack is a collection of JavaScript-based technologies that are used together to develop web applications. The stack consists of MongoDB, Express, React, and Node.js.
+
+    MongoDB is a highly scalable document database that makes it easy to store and retrieve data in JSON documents.
+    Express is a lightweight web application framework that provides a range of app-building tools and supports a variety of programming languages, including JavaScript.
+    React is an open source, front-end JavaScript library for building user interfaces based on components.
+    Node.js is a runtime environment that can be used to run JavaScript code on the server side. This allows developers to use the same language for both the front and back ends of their applications.
+
+Benefits of MERN Stack
+
+Because the MERN stack is a comprehensive JavaScript environment, it provides a scalable, consistent, open source experience that encompasses the entire app development process and is suitable for coders of varying skill levels. It allows developers to use a single language and a consistent toolset to construct both the front and back ends of their applications, an arrangement that reduces development time and complexity.
+
+And, because the MERN stack is a popular open source framework, developers gain an engaged and supportive community for knowledge sharing, problem-solving, and continuous learning. In addition, the absence of licensing fees can translate into substantial cost savings.
+
+The MERN stack excels at building interactive UIs that are also scalable. This makes it a good choice for constructing applications that must handle substantial traffic volumes and accommodate rapid growth. Much of this scalability is attributed to the use of MongoDB, a document-oriented database known for its speed and efficiency in data storage and retrieval operations.
+
+The MERN stack accommodates a wide variety of deployment options and platforms, including many cloud-based environments. This flexibility allows developers to choose the cloud platform that best aligns with their requirements.
+
+In addition, the MERN stack provides a consistent development experience across diverse platforms. This is helpful for migrating applications between different platforms, for example, from Amazon Web Services (AWS) to Oracle Cloud Infrastructure (OCI), without the need for extensive code modifications. This portability saves valuable time and effort and helps ensure uniformity in appearance and functionality, regardless of the underlying platform.
+Challenges of the MERN Stack
+
+Although the MERN stack is a powerful and popular tool for web application development, developers should be aware of its challenges. By acknowledging and addressing potential pitfalls, developers can leverage the MERN stack effectively to build robust, scalable, and secure web applications.
+
+The combination of technologies can present a learning challenge. Each technology comes with its own syntax and concepts, and developers new to the stack may find it challenging to master and integrate them effectively.
+
+It also brings the potential for performance issues. The stack relies heavily on JavaScript, a language traditionally used for front-end browser functionality. This can sometimes lead to performance bottlenecks, especially in complex applications with intensive computations. Developers must optimize their code and leverage appropriate techniques to facilitate application performance.
+
+Although there are many guides and tutorials for the MERN stack, it lacks a standardized development methodology. This can lead to inconsistencies in development approaches and make it more difficult to maintain code quality and consistency across different projects.
+
+As with any technology stack, security is a concern. Developers should use secure coding best practices and stay current with updates and patches to prevent vulnerabilities that could be exploited by malicious actors.
+
+Finally, the stack has limited support for older browsers, which don’t fully support the latest JavaScript features and functionalities. This can result in compatibility issues and affect the user experience.
+What Does a MERN Stack Developer Do?
+
+Because a MERN-based development process relies on a single technology stack for both the front and back ends of a web application, a single MERN stack developer can be responsible for the entire development process, from design to deployment, including creating the user interface, writing the server-side code, and integrating the database.
+
+A MERN stack developer must be skilled in a variety of technologies, including JavaScript, HTML, CSS, Node.js, MongoDB, Express, and React, so these professionals are constantly learning and staying up-to-date on these systems. Beyond programming, MERN stack developers must understand the needs of stakeholders and translate those requirements into a technical solution. They must also work effectively with other developers, designers, security experts, and other specialists to ensure the web application is a success.
+
+Because JavaScript is one of the world’s most popular programming languages, MERN stack developers are in high demand.
+MERN Stack Use Cases
+
+The MERN stack is giving rise to applications that are user-friendly and efficient, including the following:
+
+    Real-time applications: The “N” in MERN stands for Node.js, which is ideal for handling real-time data streams in sites that feature collaboration tools, chat applications, and even gaming apps.
+    Single-page applications (SPAs): SPAs are web applications that load a single HTML page and dynamically update it without reloading the entire page. This feature is enabled by the “R” in MERN, React, a popular library of JavaScript components that makes it easy to build updatable SPAs, such as maps, web email services, and social media pages.
+    Data-driven applications: The “M” in MERN stands for MongoDB, a NoSQL database for storing and retrieving large amounts of data in document format. Express, the “E” in MERN, is an extremely efficient framework for managing interactions between the front end and the database. Examples of data-driven applications include social media applications, ecommerce applications, and content management systems.
+
+Although developers often choose the MERN stack to build small, efficient web apps for tasks such as expense tracking and calendars, it also has been used to build mobile versions of big, high-traffic sites, such as Facebook, Instagram, WhatsApp, Dropbox, and Netflix.
+Choosing the Right Stack in 2024
+
+Choosing the right development stack is a perennial challenge because the technology landscape changes constantly. To make an informed decision, decision makers need to stay on top of trends and understand project requirements. Key factors to consider when choosing a stack include scalability, performance, security, cost, availability of talent, and the priorities of target consumers of the organization’s applications.
+
+The MERN stack is a solid choice for 2024 because its versatility lets developers quickly pivot to adapt to meet changing demand. It’s also open source and thus cost-effective, and its popularity means hiring developers could be less challenging than with more niche environments.
+
+Because the stack is based on JavaScript, a widely adopted and continuously updated programming language, applications developed using it are likely to excel in terms of compatibility, security, and future-proofing. And, as needs change, developers can swap in different components.
+Get Started with Oracle Database for Developers
+
+Did you know you can easily use Oracle Database 23ai in place of MongoDB in your MERN stack? Oracle Database 23ai has MongoDB APIs, so it can sub in for MongoDB along with the other JavaScript components. This is a seamless replacement.
+
+Another alternative to MERN is using JavaScript APIs built using Node.js with Express as the back-end platform and supporting React or Flutter as the front end. Developers can use the platform to build both web and mobile applications. These APIs work with Oracle Database 19c and with 23ai using an Oracle Database adapter for Parse Platform. Parse Platform is integrated in Oracle Backend for Spring Boot and microservices. Now you can use a Kubernetes-based back-end platform to run both Spring Boot and microservices as well as JavaScript full-stack applications, bringing DevOps and DataOps together.
+
+In the world of open source, cloud native web application development, the MERN stack remains a powerful force. Its popularity and widespread adoption within the developer community ensure that it will continue to evolve and improve, likely adapting and incorporating new advancements to meet the ever-growing demands of scalable web applications. The MERN stack, or something like it, will remain a viable choice for building complex and scalable web applications well into the future.
+
+Ready to get started with Java, MySQL, or another of Oracle’s developer downloads?
+MERN Stack FAQs
+
+What is the MERN stack concept?
+
+The MERN stack concept is a popular web development framework that includes four JavaScript-based technologies designed to work together: MongoDB, a NoSQL database; Express, a lightweight web application framework; React, a JavaScript library for building responsive user interfaces; and Node.js, a runtime environment that allows JavaScript to be executed outside of a browser, making it possible to run server-side code. The MERN stack concept helps developers to build full-stack web applications.
+
+Is MERN stack still relevant?
+
+Yes, the MERN stack is still relevant and widely used by software developers building modern web applications who want to use a single language for both front- and back-end development. This is an efficient and scalable way to develop applications. In addition, because the MERN stack is popular, there is a large community of developers and a number of forums for sharing information.
+
+What is the difference between MERN stack and MEAN stack?
+
+The MERN stack and the MEAN stack are both collections of popular JavaScript-based technologies used for web development. MEAN is an equivalent set of tools to MERN, simply replacing the React library and framework with another popular framework called Angular, also known as Angular.js. Both Angular and React are front-end technologies; the rest of the components stay the same.
+
+What is the MERN stack solution?
+
+The MERN stack solution is a popular web development framework that includes four JavaScript-based technologies designed to work together to create applications:
+
+    MongoDB is a highly scalable document database that makes it easy to store and retrieve data in JSON documents.
+    Express is a lightweight web application framework that provides a range of app-building tools and supports a variety of programming languages, including JavaScript.
+    React is an open source, front-end JavaScript library for building user interfaces based on components.
+    Node.js is a runtime environment that can be used to run JavaScript code on the server side. This allows developers to use the same language for both the front and back ends of their applications.
+
+    © 2026 Oracle
+
