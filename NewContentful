@@ -1,0 +1,798 @@
+resource location: https://www.contentful.com/blog/mern-stack/
+NewContentful is now officially part of Salesforce! Read more
+ContentfulContentful
+
+    Products
+    Solutions
+    Resources
+    Developers
+    Partners
+    Pricing
+
+Log in
+Contact sales
+
+    Blog
+    /
+
+    Guides
+    /
+
+    What is the MERN stack? A tutorial for modern web development
+
+What is the MERN stack? A tutorial for modern web development
+
+Published on May 25, 2025
+mern-stack-header
+Written by
+
+David Fateh
+
+Software Engineer, Contentful
+On this page
+
+    What is the MERN stack?
+    Understanding the MERN stack data flow
+    How the MERN stack benefits developers
+    How to use MERN to build an app: MERN stack tutorial and code example
+    Using a headless CMS with MERN stack apps
+    When to use the MERN stack
+    When not to use the MERN stack
+    Pair MERN with Contentful for a composable stack
+
+Inspiration for your inbox
+
+Subscribe and stay up-to-date on best practices for delivering modern digital experiences.
+
+The MERN stack combines MongoDB, Express, React, and Node.js to create a full development stack consisting of a client, server, and database.
+
+It's popular because it uses JavaScript on both the front and back end and a flexible database system, speeding up development time with a unified codebase.
+
+This post explains the MERN stack and provides a full tutorial and example code.
+What is the MERN stack?
+
+A technology stack is a combination of tools (programming languages, frameworks, and libraries) that are brought together to build and run a software application. The MERN stack is one such stack: a predefined grouping of four software development technologies that work well together to cover every part of a web application. The MERN stack consists of:
+MongoDB — database
+
+MongoDB is a NoSQL database that uses JSON-like documents to store data, rather than tables, and has a flexible schema allowing you to define and modify data models on the fly. It handles storage of data and database interactions. 
+
+MongoDB uses BSON (binary JSON), which works natively with JavaScript. This means you don't have to transform data between the client, server, and database, so no extra mappings are needed (unlike with SQL). MongoDB simplifies full-stack development in the MERN stack, especially when used with an ODM (object-document mapper) like Mongoose, which adds structure, validation, and easier queries.
+Express — server
+
+Express is a lightweight Node.js framework built to handle routes, requests, and middleware. In MERN, Node.js and Express together form the back end, which powers your app’s API, business logic, and database queries. 
+React — client
+
+React is a frontend JavaScript library for building user interfaces; it powers the front end in the MERN stack. React lets you build dynamic, component-based UIs that update when state changes. 
+
+You can manage local or global state with built-in tools like useState or useContext, or, if you need more complex state management, opt for libraries like Redux. Libraries like Fetch or Axios can connect React to your backend Express API. React provides a declarative way to build user interfaces: it allows you to efficiently render dynamic parts of the UI, resulting in fast and modern-looking applications.
+Node.js — server
+
+Node.js allows you to run JavaScript on the server and handles requests with a single-threaded event loop. This allows it to handle thousands of different connections at the same time, which gives you faster operations for tasks like reading files, accessing databases, and handling API requests.
+
+When building your back end, you can choose between a REST or GraphQL API to connect your front end to the back end. Node.js provides performance with its non-blocking, event-driven architecture, and Express brings simplicity and structure in setting up your server with minimal configuration.
+What is the MERN stack?
+Understanding the MERN stack data flow
+
+Here's how the data would flow through a typical MERN application stack when a user submits a form:
+
+    React handles the user interface: user input is stored in a state variable, and when the user clicks to submit a form, an event is triggered in the browser.
+
+    React sends the data to the Express back end (running on Node.js) via an HTTP request, typically using either Fetch or Axios.
+
+    Express receives the request and performs some data validation and processing (if set up by the developer), and then interacts with the MongoDB database, normally via an ORM, to save or retrieve data.
+
+    Once the database operation is complete, Express sends a response back to React.
+
+    React receives the response and updates the UI; this could be a confirmation to the user or rendering new data.
+
+Understanding the MERN stack data flow
+How the MERN stack benefits developers
+
+Web development is complex. There are innumerable tools, layers of abstraction, and a growing list of languages and frameworks to learn. Choosing the tools you'll use to build an application, and knowing they'll play well together before you start building, is a challenge. 
+
+As Leonardo da Vinci supposedly said, "Simplicity is the ultimate sophistication."
+
+The MERN stack provides a simple answer to this problem by combining well-proven tools: using JavaScript as a universal language across the entire stack, the most popular UI library, and a flexible document-based database. 
+
+Each part of the MERN stack is battle-tested and widely adopted, which means if you get stuck, there's a large community on hand to help with any issues. There are also lots of open-source packages and tutorials and a wealth of knowledge when it comes to best practices. It's all JavaScript, so there's no language switching and libraries can be shared between the front and back end, leading to faster development cycles.
+
+The MERN stack is naturally compatible with most cloud environments, making it easy and affordable to deploy. The database can be hosted with MongoDB Atlas, which simplifies database management and integrates well with other cloud providers. You can deploy technologies like React and Node on a server, or you could choose to go serverless for extra speed and scalability.
+How to use MERN to build an app: MERN stack tutorial and code example
+
+To demonstrate how the MERN stack works, this tutorial shows you how to build a book review app that displays books to the user and allows them to leave reviews.
+
+Before you begin, make sure you have MongoDB installed or Atlas set up and have your username and password ready so you can connect to the database.
+
+You can clone the example GitHub repo to run and adapt the code developed in this tutorial. 
+Create the back end using Node.js, Express, and MongoDB
+
+The MERN stack isn't a prepackaged solution: while you can be confident that MongoDB, Express, React, and Node.js will integrate well together, you still need to install each part yourself and write your app code to connect them.
+
+To start, create a project folder named mern-book-app to host all of the project code (including the front end and back end), and navigate to it:
+
+mkdir mern-book-app
+
+cd mern-book-app
+
+Create a new Express HTTP server in the server directory with the following commands:
+
+npx express-generator server --no-view --git
+
+cd server
+
+npm installNow install the mongoose, dotenv, and cors packages from npm. Mongoose is a popular object document mapper (ODM) that makes it easier to work with MongoDB using schemas and models. dotenv loads environment variables, and the CORS package enables cross-origin resource sharing, allowing the front end (running on a different port) to communicate with the back end without being blocked by the browser.npm install mongoose dotenv cors
+
+Create a .env file: 
+
+touch .env
+
+And add the MongoDB connection string containing your database credentials, host, port, and database name:
+
+MONGO_URI="mongodb://username:password@host:port/database"
+
+Update the bin/www file to load environment variables, by adding the following line to the top of the file:
+
+require('dotenv').config();
+
+At the top of app.js add the following code to connect to MongoDB:
+
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log('Connected to MongoDB'))
+.catch((err) => console.error('MongoDB connection error:', err))
+
+Copy to clipboard
+
+Also enable CORS and JSON parsing by adding the following code to app.js, below the  var app=express() line:
+
+const cors = require('cors')
+app.use(cors())
+app.use(express.json())
+
+Copy to clipboard
+
+Next, create the book model. Create a models/Book.js file with the following Mongoose schema code:
+
+// models/Book.js
+const mongoose = require("mongoose");
+
+const bookSchema = new mongoose.Schema({
+  title: String,
+  author: String,
+});
+
+module.exports = mongoose.model("Book", bookSchema);
+
+Copy to clipboard
+
+Now create the review model, which references the Book model (to tie the data together). Create a models/Review.js file and add the following code:
+
+// models/Review.js
+const mongoose = require("mongoose");
+
+const reviewSchema = new mongoose.Schema({
+  book: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Book",
+  },
+  userReview: String,
+  rating: Number,
+});
+
+module.exports = mongoose.model("Review", reviewSchema);
+
+Copy to clipboard
+
+Each review has a reference to the book that was reviewed; a userReview, which is a text string; and a rating, which is a number.
+
+In the routes/index.js file, completely replace the existing code with the following:
+
+// Express.js 
+const express = require("express");
+const router = express.Router();
+
+// MongoDB models with Mongoose
+const Book = require("../models/Book");
+const Review = require("../models/Review");
+
+// API routes (Node.js + Express back end)
+
+// Get all books
+router.get("/books", async (req, res) => {
+  try {
+    // MongoDB: Fetch all book documents
+    const books = await Book.find();
+    res.json(books); // Node.js send JSON response to front end
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch books!" });
+  }
+});
+
+// Get reviews for a specific book
+router.get("/books/:id/reviews", async (req, res) => {
+  try {
+    // MongoDB: Fetch all reviews linked to book ID 
+    const reviews = await Review.find({ book: req.params.id });
+    res.json(reviews); // Node.js send JSON response to front end
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch reviews!" });
+  }
+});
+
+// Submit a review for a book
+router.post("/books/:id/reviews", async (req, res) => {
+  try {
+    const { userReview, rating } = req.body;
+
+    // Express validate input before saving  
+    if (!userReview || typeof rating !== "number") {
+      return res.status(400).json({ error: "Invalid review data!" });
+    }
+
+    // MongoDB: Create and save new review document 
+    const review = new Review({
+      book: req.params.id,
+      userReview,
+      rating,
+    });
+
+    const saved = await review.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save review!" });
+  }
+});
+
+// Expose API router to be used in the Node.js server
+module.exports = router;
+
+Copy to clipboard
+
+The above code sets up three routes: /books to get all of the books in the database, a GET request /books/:id/reviews to get reviews for a specific book, and a POST request /books/:id/reviews to submit a review and tie it to a book ID.
+
+Your app will need some initial book data stored in the database. Create the following database seeder (a script that “seeds” a database with data) in the file scripts/seedBooks.js:
+
+const mongoose = require("mongoose");
+const Book = require("../models/Book");
+require("dotenv").config();
+
+const books = [
+  { title: "Mesopotamia", author: "Serhiy Zhadan" },
+  { title: "Island", author: "Aldous Huxley" },
+  { title: "Inherent Vice", author: "Thomas Pynchon" },
+];
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(async () => {
+    await Book.deleteMany();
+    await Book.insertMany(books);
+    console.log("Books seeded!");
+    process.exit();
+  })
+  .catch(console.error);
+
+Copy to clipboard
+
+Note that this script deletes all existing entries in the database. Run the database seeder with the command:
+
+node scripts/seedBooks.js
+
+If this script doesn't work, check that your MongoDB server is running, that the credentials are correct and that you’ve specified the right database name.
+
+Run the following command to start the Express server:
+
+ npm run start
+
+Postman is an API testing tool that you can use to check the backend API is working by making a HTTP GET request to http://localhost:3000/books:
+Screenshot of Postman retrieving book data
+
+In production apps, you could add a data validation library like Zod to ensure that users can only submit valid data and reduce errors.
+Create the React front end
+
+Change directory to the root of mern-book-app and create a new React app in the client directory using Vite — make sure you specify React as the framework and JavaScript as the variant when creating the project:
+
+npm create vite@latest client --template react
+
+cd client
+
+npm install
+
+Install the Axios library to make API calls to the back end:
+
+npm install axios
+
+src/App.jsx will load the books from the back end. Replace the contents of this file with the following code:
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import BookList from "./components/BookList";
+
+function App() {
+  // State for list of books
+  const [books, setBooks] = useState([]);
+
+  // Fetch books from the back end on component mount
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/books")
+      .then((res) => setBooks(res.data)) // Update state with fetched books 
+      .catch((err) => console.error("Problem fetching books:", err));
+  }, []);
+
+  return (
+    <div style={{ maxWidth: "600px", margin: "1rem auto", padding: "1rem" }}>
+      <h1 style={{ textAlign: "center" }}>Book Reviews</h1>
+      <BookList books={books} />
+    </div>
+  );
+}
+
+export default App;
+
+Copy to clipboard
+
+Create a components directory within the src directory. In there, create a BookList.jsx file containing the following code, which will render the books, with a button to open up a form to leave a review and a button to see current reviews stored in the database:
+
+import { useState } from "react";
+import axios from "axios";
+import BookReviewForm from "./BookReviewForm";
+
+function BookList({ books }) {
+  // State to decide which books review form is open
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  // State to decide the visibility of reviews per book 
+  const [visibleReviews, setVisibleReviews] = useState({});
+  // State to set reviews per book 
+  const [reviews, setReviews] = useState({});
+
+  const toggleReviews = async (bookId) => {
+    // Hide reviews if already visible
+    if (visibleReviews[bookId]) {
+      setVisibleReviews((prev) => ({ ...prev, [bookId]: false }));
+      return;
+    }
+
+    // Fetch books
+    if (!reviews[bookId]) {
+      try {
+        const res = await axios.get(`http://localhost:3000/books/${bookId}/reviews`);
+        setReviews((prev) => ({ ...prev, [bookId]: res.data }));
+      } catch (err) {
+        console.error("Failed to fetch reviews", err);
+      }
+    }
+
+    // Show reviews 
+    setVisibleReviews((prev) => ({ ...prev, [bookId]: true }));
+  };
+
+  return (
+    <div style={{ display: "flex" }}>
+      {books.map((book) => (
+        <div
+          key={book._id}
+          style={{
+            border: "1px solid #ccc",
+            margin: "1rem 0",
+            padding: "1rem",
+            borderRadius: "8px"
+          }}
+        >
+          <h2>{book.title}</h2>
+          <p>{book.author}</p>
+
+          <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+            <button onClick={() => setSelectedBookId(book._id)}>
+              Leave a review
+            </button>
+            <button onClick={() => toggleReviews(book._id)}>
+              {visibleReviews[book._id] ? "Hide reviews" : "See reviews"}
+            </button>
+          </div>
+
+          {selectedBookId === book._id && <BookReviewForm bookId={book._id} />}
+
+          {visibleReviews[book._id] && reviews[book._id] && (
+            <div style={{ marginTop: "1rem" }}>
+              <h4>Reviews:</h4>
+              {reviews[book._id].length === 0 ? (
+                <p>No reviews yet.</p>
+              ) : (
+                <ul>
+                  {reviews[book._id].map((rev) => (
+                    <li key={rev._id}>
+                      {rev.rating} stars – {rev.userReview}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default BookList;
+
+Copy to clipboard
+
+Create an additional file in the src/components directory named BookReviewForm.jsx and add the following code, which displays an input to leave a book review and rating:
+
+import { useState } from "react";
+import axios from "axios";
+
+function BookReviewForm({ bookId }) {
+  // State for form 
+  const [userReview, setUserReview] = useState("");
+  const [rating, setRating] = useState(5);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Send review to back end
+      await axios.post(`http://localhost:3000/books/${bookId}/reviews`, {
+        userReview,
+        rating: Number(rating),
+      });
+      setMessage("Review submitted!");
+      setUserReview("");
+      setRating(5);
+    } catch (err) {
+      console.error("Review submission failed:", err);
+      setMessage("Failed to submit review");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
+      <textarea
+        value={userReview}
+        onChange={(e) => setUserReview(e.target.value)}
+        placeholder="Your review..."
+        rows={3}
+        required
+        style={{ width: "100%", padding: "0.5rem" }}
+      />
+      <br />
+      <select
+        value={rating}
+        onChange={(e) => setRating(e.target.value)}
+        style={{ marginTop: "0.5rem", padding: "0.25rem" }}
+      >
+        {[1, 2, 3, 4, 5].map((n) => (
+          <option key={n} value={n}>
+            {n} Star{n > 1 && "s"}
+          </option>
+        ))}
+      </select>
+      <br />
+      <button type="submit" style={{ marginTop: "0.5rem" }}>
+        Submit Review
+      </button>
+      {message && <p style={{ marginTop: "0.5rem" }}>{message}</p>}
+    </form>
+  );
+}
+
+export default BookReviewForm;
+
+Copy to clipboard
+
+To get the project running, start the server, and then run the following command in your front end:
+
+npm run dev
+
+Now head to http://localhost:5173 in your browser to test the project out.
+Screenshot of the MERN stack app running
+Using a headless CMS with MERN stack apps
+
+Rather than writing your own image upload code (and code to optimize, save, resize, and deliver media files), you can use the Contentful content delivery API to upload images for your books and link them with the MongoDB database ID. The following example code shows you how you can integrate Contentful with the MERN app created above so that it provides the interface for managing images for books, and links them to the records in your MongoDB database. The source for this code builds on the client example above, and is available in the client_contentful directory of the example project
+
+To start, head over to Contentful and log in or create a free account.
+
+In the top tab bar, click on Content model. From here you’ll need to create a new Book content type in your content model, by clicking Create content type on the right: 
+Using a headless CMS with MERN stack apps
+
+Next, add a Media type field named bookCover to the Book model:
+Next, add a Media type field named bookCover to the Book model
+
+Set the Name and Field ID to bookCover, and select One file as the media type, then click Add and configure to confirm:
+Set the Name and Field ID to bookCover, and select One file as the media type, then click Add and configure to confirm
+
+Next add a Text type field with a Name and Field ID of bookId that will be used to link the image in Contentful to the book in your MongoDB database.
+
+Finally, click Save in the top right-hand corner:
+Screenshot of the completed Content model page in Contentful
+
+Now go to the Content tab and click to add a new entry under book. Upload your book cover by clicking on Add media and then publish the asset. Now,  below that, add a bookId (MongoDB _id from a book in your database), and finally click Publish on the right.
+Now go to the Content tab and click to add a new entry under book.
+
+Repeat the process for the other books you have saved in your database. 
+
+Now you’ve added your assets to Contentful you can connect to retrieve the data through the content delivery API. Contentful provides SDKs for popular languages and frameworks to do this for you. Install the Contentful JavaScript SDK by running the following command in the client directory:npm install contentfulIn the client/src directory, create a helper file to connect to Contentful named contentfulClient.js and add the following code:
+
+// src/contentfulClient.js
+import { createClient } from "contentful";
+
+const client = createClient({
+  space: import.meta.env.VITE_CF_SPACE_ID,
+  accessToken: import.meta.env.VITE_CF_CMA_TOKEN,
+});
+
+export default client;
+
+Copy to clipboard
+
+You will need to add the following environment variables to your .env file (you may need to create one in the client directory if it isn't already present):
+
+VITE_CF_SPACE_ID is the Contentful space ID, which is used to identify the space where your content is stored.
+
+VITE_CF_CMA_TOKEN is the Contentful Content Management API token, which allows write access to your Contentful space.
+
+VITE_CF_SPACE_ID={your value here}
+
+VITE_CF_CMA_TOKEN={your value here}Note that you'll need to use the space and token details from your own Contentful account, which you will be able to find under API keys in Settings.
+
+Now in App.js replace the code in the  useEffect hook, which fetches the books, with the following:
+
+useEffect(() => {
+  const fetchBooks = async () => {
+    try {
+      // Fetch MongoDB books
+      const mongoRes = await axios.get("http://localhost:3000/books");
+      const mongoBooks = mongoRes.data;
+
+      // Fetch Contentful book covers
+      const contentfulRes = await client.getEntries({ content_type: "book" });
+      const contentfulBooks = contentfulRes.items.map((item) => {
+        const fields = item.fields;
+        return {
+          bookId: fields.bookId,
+          coverUrl: fields.bookCover?.fields?.file?.url
+            ? "https:" + fields.bookCover.fields.file.url
+            : null,
+        };
+      });
+
+      // Merge MongoDB books with Contentful book covers by matching _id to bookId 
+      const mergedBooks = mongoBooks.map((book) => {
+        const match = contentfulBooks.find((b) => b.bookId === book._id);
+        return {
+          ...book,
+          coverUrl: match?.coverUrl || null,
+        };
+      });
+
+      setBooks(mergedBooks);
+    } catch (err) {
+      console.error("Error loading books:", err);
+    }
+  };
+
+  fetchBooks();
+}, []);
+
+Copy to clipboard
+
+This fetches the book covers from Contentful and the books from the database, then merges the books with the correct book covers based on the MongoDB _id field, it’s important here that the ids you have in MongoDB match what you have entered into Contentful, if you seed the database again the ids will differ.
+
+Lastly, in the BookList.jsx file, add the following piece of code immediately above the line <h2>{book.title}</h2>:
+
+{book.coverUrl && (
+  <img
+    src={book.coverUrl}
+    alt={book.title}
+    style={{
+      width: "100%",
+      height: "400px",
+      objectFit: "cover",
+      borderRadius: "4px",
+      marginBottom: "1rem",
+    }}
+  />
+)}
+
+Copy to clipboard
+
+This takes the coverUrl of the book and displays it with an img tag.
+
+If you refresh the app you should see something like the below:
+If you refresh the app you should see something like the below
+
+With this connection to Contentful, editors can now update book image covers for the app without developer involvement.
+With this connection to Contentful, editors can now update book image covers for the app without developer involvement.
+When to use the MERN stack
+
+The MERN stack is ideal for building fast, dynamic single-page applications (SPAs).These applications load a single HTML file, which then dynamically updates content without refreshing the page. React provides this interactivity with its state handling and frontend routing system.
+
+MERN is a good fit for solo developers and small teams looking to build their product as quickly as possible. MongoDB allows you to iterate quickly and remain flexible on the schema and adapt your data model over time, making it ideal for MVPs or startups where the domain is liable to change through different iterations.
+
+The MERN stack is also largely unopinionated, allowing you to decide the overall structure and architectural pattern for your application. This is appealing to teams that need full control over how their code works, especially when compared with more opinionated frameworks like Remix or Next.
+When not to use the MERN stack
+
+MERN’s core differentiator from other JavaScript stacks is the choice of MongoDB. When you need to store relational data, it's best not to use a non-relational database (like MongoDB, a document database), as, among other things, MongoDB doesn't have good support for operations like joins or transactions. If you need a stack that’s better for relational data, you might want to go for the PERN stack, which uses PostgreSQL for the database layer.
+
+Typically, the MERN stack is used to build client-side rendered (CSR) web apps, which is not optimal for SEO (as it's harder for Google to crawl and index your web pages). SEO is enhanced by server-side rendering (SSR), so it's generally better to use a full-stack framework like Next, Remix, or Nuxt as they provide SSR out of the box.
+
+The MERN stack isn't the only web development stack. Below is a table detailing a few of the other options, which come with their own set of benefits and use cases:
+
+Stack
+	
+
+Technologies
+	
+
+Ideal for
+
+MERN
+	
+
+MongoDB, Express.js, React, Node.js
+	
+
+Dynamic single page applications (SPAs), dashboards, CRUD apps (Create, Read, Update, Delete)
+
+PERN
+	
+
+PostgreSQL, Express.js, React, Node.js
+	
+
+Data-heavy apps, relational data enterprise software
+
+MEVN
+	
+
+MongoDB, Express.js, Vue.js, Node.js
+	
+
+Progressive web apps (PWAs), frontend-heavy UX
+
+MEAN
+	
+
+MongoDB, Express.js, Angular, Node.js
+	
+
+Large-scale enterprise SPAs
+
+JAMstack
+	
+
+JavaScript, APIs, Markup
+	
+
+Static sites, blogs, marketing sites
+Pair MERN with Contentful for a composable stack
+
+A significant portion of this tutorial is dedicated to building your back end — but much of this work is increasingly unnecessary. SaaS APIs for ecommerce, social media, communication, and content management relieve you of the development time and investment and ongoing maintenance and hosting fees required to provide your own backend services. 
+
+Contentful provides you with a customizable content platform for uploading and managing omnichannel content that can be delivered to websites, apps, newsletters, billboards, and even AI agents using our REST and GraphQL APIs and super-fast global CDN.
+
+By leveraging the content tools Contentful provides, you can focus your MERN stack code on the unique functionality of your app, and leave the hosting and security of your content curation and delivery to us.
+Contentful logo
+Start building
+
+Sign up for a Contentful account
+
+Use your favorite tech stack, language, and framework of your choice.
+Back endComposabilityFront end
+Copy Page Url
+Linkedin
+Facebook
+Twitter
+Meet the authors
+David Fateh
+David Fateh
+
+Software Engineer
+
+Contentful
+
+David Fateh is a software engineer with a penchant for web development. He helped build the Contentful App Framework and now works with developers that want to take advantage of it.
+Related articles
+Illustration showing Fastify setup with npm commands, code snippet for registering EJS engine, and Fastify logo on gray background
+Guides
+
+Introduction to Fastify: A practical guide to building Node.js web apps
+
+June 23, 2025
+Scratching your head each time “headless architecture” enters the conversation? This post goes out to you. We define the term and then go deeper, covering its seven key features.
+Guides
+
+Headless architecture: Seven things to know
+
+March 27, 2025
+White browser window icon surrounded by green circular icons with various symbols, arranged on a dark green background
+Guides
+
+What is Nuxt? The full-stack framework built on Vue.js
+
+September 26, 2025
+Contentful Logo 2.5 Dark
+
+Ready to start building?
+
+Put everything you learned into action. Create and publish your content with Contentful — no credit card required.
+Get started
+Products & Solutions
+
+    Why Contentful DXP?
+
+    Content Platform
+
+    AI
+
+    Personalization
+
+    What's new
+
+    Use cases
+
+    Pricing
+
+Docs & Help
+
+    Documentation
+
+    Help Center
+
+    Training
+
+    Ecosystem
+
+    Changelog
+
+    System status
+
+    FAQs
+
+About us
+
+    About us
+
+    Careers
+
+    Leadership
+
+    Blog
+
+    Events
+
+    Newsroom
+
+Get in touch
+
+    Contact
+
+    Support
+
+    Professional services
+
+    Partners
+
+Connect
+
+    Imprint/Legal
+
+    Privacy
+
+    Your Privacy Choices
+
+    Security
+
+    Log in
+
+    Accessibility Statement
+
+    Site Map
+
+    Cookie Preferences
+
+© 2026 Contentful. All rights reserved.
+Contentful
